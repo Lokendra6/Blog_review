@@ -1,0 +1,39 @@
+
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h2 class="text-center mb-4">Latest Blog Posts</h2>
+
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card shadow-sm border-0 rounded">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{% url 'post_detail' post.pk %}" class="text-decoration-none text-dark">
+                                    {{ post.title }}
+                                </a>
+                            </h5>
+                            <p class="card-text text-muted">
+                                {{ post.body|truncatewords:20 }}
+                            </p>
+                            <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary btn-sm">
+                                Read More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-center text-muted">No posts available. Be the first to create one!</p>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{% url 'post_create' %}" class="btn btn-success">
+                <i class="fas fa-plus"></i> Create New Post
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+

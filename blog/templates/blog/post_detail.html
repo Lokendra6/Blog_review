@@ -1,0 +1,37 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <!-- Blog Post Header -->
+        <div class="text-center mb-4">
+            <h2 class="display-5 fw-bold text-primary text-uppercase">{{ post.title }}</h2>
+            <hr class="w-50 mx-auto">
+        </div>
+
+        <!-- Post Content -->
+        <div class="p-4 bg-light rounded shadow-sm">
+            <p class="fs-5">{{ post.body }}</p>
+        </div>
+
+        <!-- Action Buttons -->
+        {% if request.user == post.author %}
+            <div class="mt-4 d-flex justify-content-center gap-3">
+                <a href="{% url 'post_update' post.pk %}" class="btn btn-custom">Edit</a>
+                <a href="{% url 'post_delete' post.pk %}" class="btn btn-custom">Delete</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
